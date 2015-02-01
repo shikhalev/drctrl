@@ -1,3 +1,9 @@
 # encoding: utf-8
 
-p File.expand_path($0)
+a, b, c = [1, 2, 3]
+
+p ({a: a, b: b, c: c})
+
+a, b, c = [1, 2, 3, 4, 4]
+
+p ({a: a, b: b, c: c})

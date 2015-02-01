@@ -4,8 +4,54 @@
 require 'optparse'
 require_relative '../lib/drctrl/client'
 
+command = nil
+
+options = {
+  uri: nil,
+  path: nil,
+  name: nil,
+  pid: nil
+}
+
 opts = OptionParser.new do |o|
 
-  o.on '-h', '-?', '--help', 'Show this help and exit.'
+  o.on '-h', '-?', '--help', 'Show this help and exit.' do
+    puts opts.help
+    exit
+  end
 
+  o.separator ''
+
+  o.on '-c', '--command', '=COMMAND', String do |value|
+    command = value
+  end
+
+  o.separator ''
+
+  o.on '-U', '--uri', '=URI', String do |value|
+    options[:uri] = value
+  end
+
+  o.on '-P', '--path', '=PATH', String do |value|
+    options[:path] = value
+  end
+
+  o.on '-N', '--name', '=NAME', String do |value|
+    options[:name] = value
+  end
+
+  o.on '-I', '--pid', '=PID', Integer do |value|
+    options[:pid] = value
+  end
+
+end
+
+opts.parse ARGV
+
+obj = DRCtrl.connect options
+
+if Array === obj
+  obj.each { |o| o.send command.intern }
+else
+  obj.send command.intern
 end
