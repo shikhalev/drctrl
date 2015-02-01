@@ -5,6 +5,7 @@ require 'optparse'
 require_relative '../lib/drctrl/client'
 
 command = nil
+verbose = false
 
 options = {
   uri: nil,
@@ -18,6 +19,15 @@ opts = OptionParser.new do |o|
   o.on '-h', '-?', '--help', 'Show this help and exit.' do
     puts opts.help
     exit
+  end
+
+  o.on '-V', '--version', 'Show version info and exit' do
+    puts DRCtrl::VERSION.join('.')
+    exit
+  end
+
+  o.on '-v', '--[no-]verbose', 'Verbose mode.' do |value|
+    verbose = value
   end
 
   o.separator ''
