@@ -1,0 +1,11 @@
+#!/usr/bin/ruby
+# encoding: utf-8
+
+require 'optparse'
+require_relative '../lib/drctrl/client'
+
+opts = OptionParser.new do |o|
+
+  o.on '-h', '-?', '--help', 'Show this help and exit.'
+
+end
