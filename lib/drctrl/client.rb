@@ -55,4 +55,6 @@ module DRCtrl
 
 end
 
-$stderr.puts [Gem::Specification::find_by_path(__FILE__), __FILE__].inspect
+$stderr.puts [Gem::Specification::.find { |spec|
+              File.fnmatch(File.join(spec.full_gem_path,'*'), __FILE__)
+             }, __FILE__].inspect
