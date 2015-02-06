@@ -2,6 +2,7 @@
 # encoding: utf-8
 
 require 'optparse'
+require 'current_spec'
 require_relative '../lib/drctrl/client'
 
 verbose = false
@@ -23,7 +24,7 @@ opts = OptionParser.new do |o|
   end
 
   o.on '-V', '--version', 'Show version info and exit' do
-    puts DRCtrl::VERSION.join('.')
+    puts(Gem.current_spec_version || DRCtrl::VERSION.join('.'))
     exit
   end
 
