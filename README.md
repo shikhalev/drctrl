@@ -34,3 +34,6 @@ drctrl [<options>] <command> [<args>]
     -N, --name=NAME
     -I, --pid=PID
 ```
+
+There is required to set one of options: `--uri` (any dRuby URI), `--path`
+(a path to unix-socket), or `--name` (name of controlled app).
