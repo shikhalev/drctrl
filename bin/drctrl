@@ -4,7 +4,6 @@
 require 'optparse'
 require_relative '../lib/drctrl/client'
 
-command = nil
 verbose = false
 
 options = {
@@ -15,6 +14,8 @@ options = {
 }
 
 opts = OptionParser.new do |o|
+
+  o.banner = 'drctrl [<options>] <command> [<args>]'
 
   o.on '-h', '-?', '--help', 'Show this help and exit.' do
     puts opts.help
@@ -28,12 +29,6 @@ opts = OptionParser.new do |o|
 
   o.on '-v', '--[no-]verbose', 'Verbose mode.' do |value|
     verbose = value
-  end
-
-  o.separator ''
-
-  o.on '-c', '--command', '=COMMAND', String do |value|
-    command = value
   end
 
   o.separator ''
@@ -56,12 +51,20 @@ opts = OptionParser.new do |o|
 
 end
 
-opts.parse ARGV
+command, *args = opts.parse ARGV
 
 obj = DRCtrl.connect options
 
 if Array === obj
-  obj.each { |o| o.send command.intern }
+  obj.each do |o|
+    if verbose
+      puts "Send #{command.intern.inspect} to #{o.__drburi.inspect}..."
+    end
+    o.send command.intern, *args
+  end
 else
-  obj.send command.intern
+  if verbose
+    puts "Send #{command.intern.inspect} to #{obj.__drburi.inspect}..."
+  end
+  obj.send command.intern, *args
 end
