@@ -14,6 +14,7 @@ Gem::Specification.new do |g|
   g.license = 'GNU LGPLv3'
   g.files = [ 'README.md', 'LICENSE' ] +
       Dir['bin/*'] + Dir['lib/**/*']
+  g.bindir = 'bin'
   g.executables = [ 'drctrl' ]
 
   g.set_version(*DRCtrl::VERSION, git: true)
