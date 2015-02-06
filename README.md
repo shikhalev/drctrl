@@ -2,6 +2,10 @@
 
 A local control for DRb service.
 
+[![Gem Version](https://badge.fury.io/rb/drctrl.svg)](http://badge.fury.io/rb/drctrl)
+[![GitHub license](https://img.shields.io/badge/license-LGPLv3-orange.svg?style=flat)](https://raw.githubusercontent.com/shikhalev/drctrl/master/LICENSE)
+[![Code Climate](https://codeclimate.com/github/shikhalev/drctrl/badges/gpa.svg)](https://codeclimate.com/github/shikhalev/drctrl)
+
 This gem provides a local dRuby service for control purposes and a command line
 tool for it.
 
