@@ -56,6 +56,3 @@ module DRCtrl
 end
 
 
-$stderr.puts [Gem::Specification::find { |spec|
-              File.fnmatch(File.join(spec.full_gem_path,'*'), __FILE__)
-             }, __FILE__].inspect
