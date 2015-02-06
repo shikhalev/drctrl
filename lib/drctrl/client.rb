@@ -55,4 +55,4 @@ module DRCtrl
 
 end
 
-$stderr.puts Gem::Specification::find_by_path(__FILE__).inspect
+$stderr.puts [Gem::Specification::find_by_path(__FILE__), __FILE__].inspect
