@@ -3,6 +3,6 @@
 require 'drb'
 require 'drctrl'
 
-s = DRCtrl.start_service
+DRCtrl.start_service
 
 DRb.thread.join
