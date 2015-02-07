@@ -54,7 +54,7 @@ module DRCtrl
 
     def start_service uri: nil, **opts, &block
       if uri.nil?
-        uri = "drbunix:/tmp/#{File.basename($0)}-#{Process.pid}"
+        uri = "drbunix:/tmp/#{File.basename($0, '.rb')}-#{Process.pid}"
       end
       DRb.start_service uri, Server.new(&block), opts
     end
