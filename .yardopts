@@ -1,0 +1,8 @@
+--no-cache
+--private
+--protected
+--hide-void-return
+--title 'dRuby Control'
+--query="/^@@/ !~ o.name && @api.text != 'ignore'"
+lib/**/*.rb
+- *.md

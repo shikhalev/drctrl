@@ -8,6 +8,13 @@ module DRCtrl
 
   class << self
 
+    # @!group Client-side Module Methods
+
+    # Find socket path for name and process ID.
+    # @param [String] name Application name.
+    # @param [Integer] pid Process ID.
+    # @return [String, Array<String>, nil]
+
     def detect name, pid = nil
       if pid
         result = "/tmp/#{name}-#{pid}"
@@ -28,6 +35,15 @@ module DRCtrl
         end
       end
     end
+
+    # Connect to dRuby socket(-s).
+    # @param uri [String] Socket's URI.
+    # @param path [String] Path to unix-socket.
+    # @param name [String] Application name.
+    # @param pid [Integer] Process ID.
+    # @return [DRb::DRbObject, Array<DRbObject>, nil]
+    # @raise [RuntimeError] If socket not found.
+    # @raise [ArgumentError] If no required arguments setted.
 
     def connect uri: nil, path: nil, name: nil, pid: nil
       if uri
@@ -50,6 +66,8 @@ module DRCtrl
             "One of this arguments: uri, path or name must be setted!", caller
       end
     end
+
+    # @!endgroup
 
   end
 

@@ -2,6 +2,7 @@
 
 module DRCtrl
 
+  # Version of drctrl gem without build number.
   VERSION = [0, 1]
 
 end
