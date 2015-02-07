@@ -34,7 +34,7 @@ module DRCtrl
     def restart
       stop
       sleep 0
-      Process.exec File.expand_path($0)
+      exec 'ruby', File.expand_path($0), *($*)
     end
 
   end
