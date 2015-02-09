@@ -30,7 +30,7 @@ module DRCtrl
     end
 
     # Restart the service.
-    # @return [Integer]
+    # @return [Integer] Process ID for new process.
     def restart
       stop
       sleep 0
