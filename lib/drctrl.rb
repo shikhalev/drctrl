@@ -30,7 +30,7 @@ module DRCtrl
     end
 
     # Restart the service.
-    # @return [void]
+    # @return [Integer]
     def restart
       stop
       sleep 0
