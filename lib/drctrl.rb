@@ -22,13 +22,10 @@ module DRCtrl
     # Stop the service.
     # @return [void]
     def stop
-      #DRb.primary_server = @server
-      DRb.stop_service
-      #sleep 0
       if @block
         block.call
       end
-      nil
+      DRb.stop_service
     end
 
     # Restart the service.
@@ -38,9 +35,6 @@ module DRCtrl
       sleep 0
       spawn 'ruby', File.expand_path($0), *($*)
     end
-
-    # @private
-    attr_accessor :server
 
   end
 
@@ -61,9 +55,9 @@ module DRCtrl
       if uri.nil?
         uri = "drbunix:/tmp/#{File.basename($0, '.rb')}-#{Process.pid}"
       end
-      front = Server.new(&block)
-      server = DRb.start_service uri, front, opts
-      front.server = server
+      oldprim = DRb.primary_server
+      DRb.start_service uri, Server.new(&block), opts
+      DRb.primary_server = oldprim if oldprim
     end
 
     # @!endgroup
