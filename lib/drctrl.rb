@@ -27,6 +27,7 @@ module DRCtrl
           block.call
         end
       end
+      DRb.primary_server = DRCtrl.server
       DRb.stop_service
     end
 
@@ -43,6 +44,8 @@ module DRCtrl
   class << self
 
     # @!group Server-side Module Methods
+
+    attr_reader :server
 
     # Start control service with provided or default URI. Create
     # a {DRCtrl::Server} instance and start it as a front object of dRuby service.
