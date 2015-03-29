@@ -22,9 +22,9 @@ module DRCtrl
     # Stop the service.
     # @return [void]
     def stop
-      DRb.primary_server = @server
+      #DRb.primary_server = @server
       DRb.stop_service
-      sleep 0
+      #sleep 0
       if @block
         block.call
       end
