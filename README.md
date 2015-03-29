@@ -19,10 +19,18 @@ require 'drctrl'
 DRCtrl.start_service do
   # some finalize code
 end
+
+. . . . .
+
+
+DRCtrl.wait
+
 ```
 
 This code creates object with methods `stop` and `restart`. And it starts
 a dRuby service at unix-socket `/tmp/<appname>-<pid>`.
+
+Use `DRCtrl.wait` instead `DRb.thread.join` for correct stopping.
 
 ### At client side
 

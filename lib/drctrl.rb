@@ -45,6 +45,7 @@ module DRCtrl
 
     # @!group Server-side Module Methods
 
+    # @api ignore
     attr_reader :server
 
     # Start control service with provided or default URI. Create
@@ -64,6 +65,9 @@ module DRCtrl
       @server = DRb.start_service uri, Server.new(&block), opts
       DRb.primary_server = oldprim if oldprim
     end
+
+    # Wait when control service will be stopped.
+    # @return [void]
 
     def wait
       @server.thread.join if @server
