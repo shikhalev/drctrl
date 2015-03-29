@@ -15,7 +15,7 @@ module DRCtrl
 
     # @yield Block without parameters which will be runned before stop
     #   the service.
-    def initialize service, &block
+    def initialize &block
       @block = block
     end
 
