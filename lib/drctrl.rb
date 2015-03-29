@@ -58,10 +58,15 @@ module DRCtrl
         uri = "drbunix:/tmp/#{File.basename($0, '.rb')}-#{Process.pid}"
       end
       oldprim = DRb.primary_server
-      DRb.start_service uri, Server.new(&block), opts
-      #p prim: DRb.primary_server, oldprim: oldprim
+      @server = DRb.start_service uri, Server.new(&block), opts
       DRb.primary_server = oldprim if oldprim
     end
+
+    def wait
+      @server.thread.join if @server
+    end
+
+    alias :join :wait
 
     # @!endgroup
 
