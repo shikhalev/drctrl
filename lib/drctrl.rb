@@ -22,10 +22,12 @@ module DRCtrl
     # Stop the service.
     # @return [void]
     def stop
-      if @block
-        block.call
+      Thread.exclusive do
+        if @block
+          block.call
+        end
+        DRb.stop_service
       end
-      DRb.stop_service
     end
 
     # Restart the service.
