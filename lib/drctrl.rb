@@ -57,7 +57,7 @@ module DRCtrl
       end
       oldprim = DRb.primary_server
       DRb.start_service uri, Server.new(&block), opts
-      p prim: DRb.primary_server, oldprim: oldprim
+      #p prim: DRb.primary_server, oldprim: oldprim
       DRb.primary_server = oldprim if oldprim
     end
 
