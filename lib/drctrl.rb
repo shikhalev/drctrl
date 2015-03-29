@@ -15,7 +15,7 @@ module DRCtrl
 
     # @yield Block without parameters which will be runned before stop
     #   the service.
-    def initialize &block
+    def initialize service, &block
       @block = block
     end
 
@@ -38,6 +38,9 @@ module DRCtrl
       spawn 'ruby', File.expand_path($0), *($*)
     end
 
+    # @private
+    attr_accessor :server
+
   end
 
   class << self
@@ -57,7 +60,9 @@ module DRCtrl
       if uri.nil?
         uri = "drbunix:/tmp/#{File.basename($0, '.rb')}-#{Process.pid}"
       end
-      DRb.start_service uri, Server.new(&block), opts
+      front = Server.new(&block)
+      server = DRb.start_service uri, front, opts
+      front.server = server
     end
 
     # @!endgroup
