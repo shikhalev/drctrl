@@ -1,5 +1,7 @@
 # encoding: utf-8
 
+require 'pp'
+
 require 'drb'
 
 require_relative 'drctrl/version'
@@ -57,6 +59,7 @@ module DRCtrl
       end
       oldprim = DRb.primary_server
       DRb.start_service uri, Server.new(&block), opts
+      pp prim: DRb.primary_server, oldprim: oldprim
       DRb.primary_server = oldprim if oldprim
     end
 
