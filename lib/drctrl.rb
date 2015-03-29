@@ -27,6 +27,7 @@ module DRCtrl
       if @block
         block.call
       end
+      nil
     end
 
     # Restart the service.
